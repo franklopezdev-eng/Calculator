@@ -42,4 +42,13 @@
 # +--------+----------+-------------------------------------+
 
 class Calculator:
-    
+    def __init__(self, name):
+        self.name = name
+        self.number_registers = ["0000000000"] * 22
+        self.history_registers = ["0000000000"] * 10
+        self.number_index = "00001"                     #Leaves Register 0 for 0 constant
+        self.history_index = "10110"                    #Starts at Register 22
+        self.temp_history_index = "10110"
+        self.userdisplay = ""
+
+        
