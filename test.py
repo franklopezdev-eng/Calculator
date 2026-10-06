@@ -4,3 +4,4 @@ myCalculator = Calculator("Frank")
 
 myCalculator.store_number("101")
 myCalculator.load_number("1")
+myCalculator.store_history("111")

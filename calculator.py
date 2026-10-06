@@ -72,3 +72,14 @@ class Calculator:
         number = self.number_registers[index]
         self.update_userdisplay(f"Loaded number \"{number}\" from register \"{bin(index)[2:]}\"")
         return number
+
+    def store_history(self, number):
+        index = int(self.history_index, 2) - 22
+        self.history_registers[index] = number
+        self.update_userdisplay(f"Stored the number \"{number}\" into history register \"{self.history_index}\"")
+        if(index >= 31 or index < 22):
+            self.history_index == "10110"
+        else:
+            self.history_index == bin(index + 1)[2:]     #[2:] omits the "0b" at the beginning of binary string
+        self.temp_history_index = self.history_index
+        return None
