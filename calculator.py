@@ -55,4 +55,15 @@ class Calculator:
     def update_userdisplay(self, message):
         self.userdisplay = message
         print(f"{self.userdisplay}")
+        return None
+
+    def store_number(self, number):
+        self.number_registers[int(self.number_index, 2)] = number
+        self.update_userdisplay(f"Stored the number \"{number}\" into register \"{self.number_index}\"")
+        if(int(self.number_index, 2) >= 21):
+            self.number_index == "00001"
+        else:
+            self.number_index == bin(int(self.number_index, 2) + 1)[2:]     #[2:] omits the "0b" at the beginning of binary string
+        return None
+
     
