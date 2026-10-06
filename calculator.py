@@ -40,3 +40,6 @@
 # | 000001 |  000000  | Store value to next register        |
 # | 100001 |  000000  | Return previous calculation         |
 # +--------+----------+-------------------------------------+
+
+class Calculator:
+    
