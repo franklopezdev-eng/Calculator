@@ -46,7 +46,7 @@ class Calculator:
         self.name = name
         self.number_registers = ["0000000000"] * 22
         self.history_registers = ["0000000000"] * 10
-        self.number_index = "00001"                     #Leaves Register 0 for 0 constant
+        self.number_index = "1"                         #Leaves Register 0 for 0 constant
         self.history_index = "10110"                    #Starts at Register 22
         self.temp_history_index = "10110"
         self.userdisplay = ""
@@ -58,12 +58,17 @@ class Calculator:
         return None
 
     def store_number(self, number):
-        self.number_registers[int(self.number_index, 2)] = number
+        index = int(self.number_index, 2)
+        self.number_registers[index] = number
         self.update_userdisplay(f"Stored the number \"{number}\" into register \"{self.number_index}\"")
-        if(int(self.number_index, 2) >= 21):
-            self.number_index == "00001"
+        if(index >= 21):
+            self.number_index == "1"
         else:
-            self.number_index == bin(int(self.number_index, 2) + 1)[2:]     #[2:] omits the "0b" at the beginning of binary string
+            self.number_index == bin(index + 1)[2:]     #[2:] omits the "0b" at the beginning of binary string
         return None
 
-    
+    def load_number(self, register_address):
+        index = int(register_address, 2)
+        number = self.number_registers[index]
+        self.update_userdisplay(f"Loaded number \"{number}\" from register \"{bin(index)[2:]}\"")
+        return number
