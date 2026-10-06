@@ -50,5 +50,9 @@ class Calculator:
         self.history_index = "10110"                    #Starts at Register 22
         self.temp_history_index = "10110"
         self.userdisplay = ""
-
-        
+        self.update_userdisplay(f"Hello, {name}")
+    #Abstracted Methods
+    def update_userdisplay(self, message):
+        self.userdisplay = message
+        print(f"{self.userdisplay}")
+    
