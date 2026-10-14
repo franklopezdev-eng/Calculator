@@ -51,6 +51,7 @@ class Calculator:
         self.temp_history_index = "10110"
         self.userdisplay = ""
         self.update_userdisplay(f"Hello, {name}")
+
     #Abstracted Methods
     def update_userdisplay(self, message):
         self.userdisplay = message
@@ -124,4 +125,10 @@ class Calculator:
             self.update_userdisplay(f"{dividend} / {divisor} = {quotient}")
             self.store_history(bin(quotient)[2:])
             return bin(quotient)[2:]
+
+    # Extra functionality
+    # Returns previous answer in binary
+    def ANS(self):
+        return self.history_registers[int(self.history_index, 2) - 23]
+
     

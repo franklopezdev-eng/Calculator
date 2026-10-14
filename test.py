@@ -10,4 +10,5 @@ myCalculator.MULT("1", "10")
 myCalculator.DIV("1", "10")
 myCalculator.store_number("0")
 myCalculator.DIV("1", "11")
-
+myCalculator.ADD("10", "1")
+print(f"{myCalculator.ANS()}")
