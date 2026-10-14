@@ -8,4 +8,6 @@ myCalculator.ADD("1", "10")
 myCalculator.SUB("1", "10")
 myCalculator.MULT("1", "10")
 myCalculator.DIV("1", "10")
+myCalculator.store_number("0")
+myCalculator.DIV("1", "11")
 

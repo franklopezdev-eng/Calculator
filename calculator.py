@@ -116,10 +116,12 @@ class Calculator:
     def DIV(self, dividend_address, divisor_address):
         dividend = int(self.load_number(dividend_address), 2)
         divisor = int(self.load_number(divisor_address), 2)
-        quotient = int(dividend / divisor)
-
-        self.update_userdisplay(f"{dividend} / {divisor} = {quotient}")
-        self.store_history(bin(quotient)[2:])
-        return bin(quotient)[2:]
-    
+        if (divisor == 0):
+            self.update_userdisplay(f"ZeroDivisionError: Cannot divide {dividend} by 0.")
+            return None
+        else:
+            quotient = int(dividend / divisor)
+            self.update_userdisplay(f"{dividend} / {divisor} = {quotient}")
+            self.store_history(bin(quotient)[2:])
+            return bin(quotient)[2:]
     
