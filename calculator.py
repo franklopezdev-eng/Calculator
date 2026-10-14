@@ -62,14 +62,15 @@ class Calculator:
         self.number_registers[index] = number
         self.update_userdisplay(f"Stored the number \"{number}\" into register \"{self.number_index}\"")
         if(index >= 21):
-            self.number_index == "1"
+            self.number_index = "1"
         else:
-            self.number_index == bin(index + 1)[2:]     #[2:] omits the "0b" at the beginning of binary string
+            self.number_index = bin(index + 1)[2:]     #[2:] omits the "0b" at the beginning of binary string
         return None
 
+    #returns binary number
     def load_number(self, register_address):
         index = int(register_address, 2)
-        number = self.number_registers[index]
+        number = self.number_registers[index]           
         self.update_userdisplay(f"Loaded number \"{number}\" from register \"{bin(index)[2:]}\"")
         return number
 
@@ -77,9 +78,48 @@ class Calculator:
         index = int(self.history_index, 2) - 22
         self.history_registers[index] = number
         self.update_userdisplay(f"Stored the number \"{number}\" into history register \"{self.history_index}\"")
-        if(index >= 31 or index < 22):
-            self.history_index == "10110"
+        if(index >= 10):
+            self.history_index = "10110"
         else:
-            self.history_index == bin(index + 1)[2:]     #[2:] omits the "0b" at the beginning of binary string
+            self.history_index = bin(index + 23)[2:] #[2:] omits the "0b" at the beginning of binary string
         self.temp_history_index = self.history_index
         return None
+
+    # Main methods
+    def ADD(self, addend1_address, addend2_address):
+        addend1 = int(self.load_number(addend1_address), 2)
+        addend2 = int(self.load_number(addend2_address), 2)
+        sum = addend1 + addend2
+
+        self.update_userdisplay(f"{addend1} + {addend2} = {sum}")
+        self.store_history(bin(sum)[2:])
+        return bin(sum)[2:]
+    
+    def SUB(self, minuend_address, subtrahend_address):
+        minuend = int(self.load_number(minuend_address), 2)
+        subtrahend = int(self.load_number(subtrahend_address), 2)
+        difference = minuend - subtrahend
+
+        self.update_userdisplay(f"{minuend} - {subtrahend} = {difference}")
+        self.store_history(bin(difference)[2:])
+        return bin(difference)[2:]
+
+    def MULT(self, multiplicand_address, multiplier_address):
+        multiplicand = int(self.load_number(multiplicand_address), 2)
+        multiplier = int(self.load_number(multiplier_address), 2)
+        product = multiplicand * multiplier
+
+        self.update_userdisplay(f"{multiplicand} * {multiplier} = {product}")
+        self.store_history(bin(product)[2:])
+        return bin(product)[2:]
+
+    def DIV(self, dividend_address, divisor_address):
+        dividend = int(self.load_number(dividend_address), 2)
+        divisor = int(self.load_number(divisor_address), 2)
+        quotient = int(dividend / divisor)
+
+        self.update_userdisplay(f"{dividend} / {divisor} = {quotient}")
+        self.store_history(bin(quotient)[2:])
+        return bin(quotient)[2:]
+    
+    
